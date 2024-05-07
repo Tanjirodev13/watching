@@ -32,6 +32,6 @@ bot.on('ready', () => {
     console.log(`Bot ${bot.user.tag} is logged in!`);
 });
 
-bot.login('MTEyOTQyNDAwNDIzMTQ2NzE0OQ.GeEkEs.J84h3Gj9btuikrTGf0eZzlF4F37ViJILHbk62s').then(() => {
-    bot.user.setPresence({ activities: [{ name: 'ARCELIA', type: 'WATCHING' }], status: 'online' });
+bot.login(process.env.token).then(() => {
+    bot.user.setPresence({ activities: [{ name: 'Mlestone/value', type: 'WATCHING' }], status: 'online' });
 });
