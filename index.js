@@ -33,5 +33,5 @@ bot.on('ready', () => {
 });
 
 bot.login(process.env.token).then(() => {
-    bot.user.setPresence({ activities: [{ name: 'Mlestone/value', type: 'WATCHING' }], status: 'online' });
+    bot.user.setPresence({ activities: [{ name: 'Mlestone/value', type: 'WATCHING' }], status: 'dnd' });
 });
