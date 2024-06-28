@@ -1,37 +1,24 @@
-const {
-    Client,
-    Intents
-} = require('discord.js');
-const keepAliveServer = require('./keep_alive.js');
+const { prefix, token } = require('./config.json');
 
-const bot = new Client({
+const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
 
-bot.on('guildMemberAdd', (member) => {
-    const channelId = '1197950988057845910'; // The Channel ID you just copied
-    const welcomeMessage = `Hey <@${member.id}>! Welcome to my server!`;
-    member.guild.channels.fetch(channelId).then(channel => {
-        channel.send(welcomeMessage)
-    });
+client.once('ready', () => {
+  console.log(`Bot ${client.user.tag} is logged in!`);
+    client.user.setPresence({ activities: [{ name: 'Milestone', type: 'WATCHING' }], status: 'dnd' });// Set the bot's watching status
 });
 
-bot.on('messageCreate', (message) => {
-    if (message.content.toLowerCase() === '!ping') {
-        message.reply('Pong!');
-    }
+client.on('messageCreate', message => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  if (command === 'say') {
+    const text = args.join(' ');
+    message.channel.send(text);
+  }
 });
 
-bot.on('messageCreate', (message) => {
-    if (message.content.toLowerCase().includes('hey bot') || message.content.toLowerCase().includes('kirixen')) {
-        message.channel.send('Hello there!');
-    }
-});
-
-bot.on('ready', () => {
-    console.log(`Bot ${bot.user.tag} is logged in!`);
-});
-
-bot.login(process.env.token).then(() => {
-    bot.user.setPresence({ activities: [{ name: 'Skitzo', type: 'WATCHING' }], status: 'dnd' });
-});
+client.login(process.env.token);
