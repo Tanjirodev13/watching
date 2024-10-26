@@ -1,4 +1,4 @@
-const { prefix, token } = require('./config.json');
+// const { prefix, token } = require('./config.json');
 
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
@@ -15,7 +15,7 @@ client.on('messageCreate', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === 'say') {
+  if (command === '!say') {
     const text = args.join(' ');
     message.channel.send(text);
   }
