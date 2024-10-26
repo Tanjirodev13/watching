@@ -3,7 +3,7 @@ const {
     Client,
     Intents
 } = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix  } = require('./config.json');
 
 
 const client = new Client({
