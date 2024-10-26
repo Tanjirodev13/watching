@@ -1,6 +1,7 @@
 {
  
   "token" : process.env.token,
+ "clientId": "1215576496962281492",
   "prefix" : "!"
 
 }
